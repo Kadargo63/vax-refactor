@@ -7,6 +7,7 @@ User.hasOne(Appointment, {
 });
 Appointment.belongsTo(User, {
     foreignKey: 'user_id',
+    onDelete: "cascade",
 });
 
 module.exports = { User, Appointment };

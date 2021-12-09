@@ -1,6 +1,27 @@
 const router = require('express').Router();
 const { Appointment, User } = require('../../models');
 
+// get all users
+router.get('/', (req, res) => {
+    console.log('=================');
+    Appointment.findAll({
+        attributes: ['id', 'created_at'],
+        include: [
+            {
+                model: User,
+                attributes: ['user_id']
+            }
+        ]
+    })
+    .then(dbAppointmentData => res.json(dbAppointmentData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+module.exports = router;
+
 // const { authJwt } = require("../middleware");
 // const controller = require("../controllers/appointmentController");
 
