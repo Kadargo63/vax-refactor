@@ -1,35 +1,34 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
+const { Appointment, User } = require('../models');
 const withAuth = require('../utils/auth');
 router.get('/', withAuth, (req, res) => {
-    Post.findAll({
+    Appointment.findAll({
         where: {
             user_id: req.session.user_id
         },
         attributes: [
             'id',
-            'title',
-            'content',
+            'vax_service',
+            'date',
             'created_at'
         ],
         include: [{
-            model: Comment,
-            attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-            include: {
-                model: User,
-                atrributes: ['username']
-            }
-        },
-        {
             model: User,
-            attributes: ['username']
+            attributes: [
+                'last_name',
+                'first_name',
+                'phone',
+                'dob',
+                'address',
+                'email',
+            ]
         }]
     })
-    .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get ({ plain: true }));
-        res.render('dashboard', { posts, loggedIn:
-        true });
+    .then(dbAppointmentData => {
+        const appointments = dbAppointmentData.map(appointment => appointment.get({
+            plain: true }));
+            res.render('dashboard', {appointments, loggedIn: true });
     })
     .catch(err => {
         console.log(err);
@@ -38,43 +37,37 @@ router.get('/', withAuth, (req, res) => {
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {
-    Post.findOne({
+    Appointment.findOne({
         where: {
             id: req.params.id
         },
-        attributes: ['id',
-            'title',
-            'content',
+        attributes: [
+            'id',
+            'vax_service',
+            'date',
             'created_at'
         ],
         include: [{
             model: User,
-            attributes: ['username']
-        },
-        {
-            model: Comment,
-            attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-            include: {
-                model: User,
-                attributes: ['usename']
-            }
+            attributes: [
+                'last_name',
+                'first_name',
+                'phone',
+                'dob',
+                'address',
+                'email',
+            ]
         }]
     })
-    .then(dbPostData => {
-        if (!dbPostData) {
-            res.status(404).json({ message: 'Could not find a post with this ID' });
-            return;
-        }
-        const post = dbPostData.get({ plain: true });
-        res.render('edit-post', { post, loggedIn: true });
+    .then(dbAppointmentData => {
+        const appointments = dbAppointmentData.map(appointment => appointment.get({
+            plain: true }));
+            res.render('dashboard', {appointments, loggedIn: true });
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
-})
-router.get('/new', (req, res) => {
-    res.render('new-post');
 });
 
 module.exports = router;

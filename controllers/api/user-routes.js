@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../../models');
+const { User, Appointment } = require('../../models');
 router.get('/', (req, res) => {
     User.findAll({
             attributes: { exclude: ['[password'] }
@@ -18,27 +18,15 @@ router.get('/:id', (req, res) => {
                 id: req.params.id
             },
             include: [{
-                    model: Post,
+                    model: Appointment,
                     attributes: [
                         'id',
-                        'title',
-                        'content',
+                        'vax_service',
+                        'date',
+                        'time',
                         'created_at'
                     ]
                 },
-
-                {
-                    model: Comment,
-                    attributes: ['id', 'comment_text', 'created_at'],
-                    include: {
-                        model: Post,
-                        attributes: ['title']
-                    }
-                },
-                {
-                    model: Post,
-                    attributes: ['title'],
-                }
             ]
         })
         .then(dbUserData => {
@@ -58,6 +46,8 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 
     User.create({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password
     })
