@@ -60,9 +60,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
         }]
     })
     .then(dbAppointmentData => {
-        const appointments = dbAppointmentData.map(appointment => appointment.get({
-            plain: true }));
-            res.render('dashboard', {appointments, loggedIn: true });
+        const appointment = dbAppointmentData.get({
+            plain: true });
+            res.render('edit-appointment', {appointment, loggedIn: true });
     })
     .catch(err => {
         console.log(err);

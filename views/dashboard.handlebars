@@ -1,8 +1,9 @@
 {{#if appointments.length}}
 <section>
-  <h2 class="header-page">Scheduled Scheduled Services</h2>
+  <h2 class="header-page">Scheduled Services</h2>
     {{#each appointments as |appointment|}}
       {{> dashboard-appointmentinfo appointment}}
+      <a href="/dashboard/edit/{{appointment.id}}" class="edit-link">Edit Appointment</a>
     {{/each}}
 
 </section>

@@ -3,6 +3,7 @@ async function editFormHandler(event) {
 
     const vax_service = document.querySelector('input [name="appointment-service"]').value.trim();
     const date = document.querySelector('input[name="date"]').value.trim();
+    const time = document.querySelector('input[name="time"]').value.trim();
 
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
@@ -12,7 +13,8 @@ async function editFormHandler(event) {
         body: JSON.stringify({
             appointment_id: id,
             vax_service,
-            date
+            date,
+            time
         }),
         headers: {
             'Content-Type': 'application/json'

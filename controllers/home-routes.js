@@ -3,6 +3,7 @@ const { Appointment, User } = require('../models');
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
+    console.log(req.session);
     Appointment.findAll({
         attributes: [
             'id',
