@@ -1,0 +1,18 @@
+<div class="card">
+    <h3 class="card-header">Edit Appointment</h3>
+    <form class="card-body edit-post-form">
+        <label for="appointment-service" class="form-label">Service</label>
+        <input name="appointment-service" type="text" value="{{appointment.vax_service}}" class="form-input" />
+        <label class="form-label" for="date">Date</label>
+        <input name="date" type="text" value="{{appointment.date}}" class="form-input" />
+
+        <div class="form-button-layout">
+        <button type="submit" class="btn">Update Appointment</button>
+        <button type="button" class="delete-appointment-btn btn-outline">Delete Post</button>
+        </div>
+    </form>
+</div>
+
+
+<script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script>

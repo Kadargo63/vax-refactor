@@ -26,7 +26,7 @@ Appointment.init(
             type: DataTypes.TIME,
             allowNull: true,
         },
-        details: {
+        vax_service: {
             type: DataTypes.TEXT,
             allowNull: true,
         }
