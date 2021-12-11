@@ -10,17 +10,19 @@ router.get('/', (req, res) => {
             'date',
             'created_at'
         ],
-        include: [{
-            model: User,
-            attributes: [
-                'last_name',
-                'first_name',
-                'phone',
-                'dob',
-                'address',
-                'email',
-            ]
-        }]
+        include: [
+            {
+                model: User,
+                attributes: [
+                    'last_name',
+                    'first_name',
+                    'phone',
+                    'dob',
+                    'address',
+                    'email',
+                ]
+            }
+        ]
     })
     .then(dbAppointmentData => {
         const appointments = dbAppointmentData.map(appointment => appointment.get({
