@@ -48,4 +48,56 @@ router.get('/:id', (req, res) => {
       });
   });
 
+  router.post('/', withAuth, (req, res) => {
+    Appointment.create({
+            vax_service: req.body.vax_service,
+            date: req.body.date,
+            time: req.body.time,
+            user_id: req.session.user_id
+        })
+        .then(dbAppointmentData => res.json(dbAppointmentData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+router.put('/:id', withAuth, (req, res) => {
+    Appointment.update({
+            vax_service: req.body.vax_service,
+            date: req.body.date,
+            time: req.body.time
+        }, {
+            where: {
+                id: req.params.id
+            }
+        }).then(dbAppointmentData => {
+            if (!dbAppointmentData) {
+                res.status(404).json({ message: 'Could not find a appointment with this id' });
+                return;
+            }
+            res.json(dbAppointmentData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+router.delete('/:id', withAuth, (req, res) => {
+    Appointment.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(dbAppointmentData => {
+        if (!dbAppointmentData) {
+            res.status(404).json({ message: 'Could not find an appointment with this id' });
+            return;
+        }
+        res.json(dbAppointmentData);
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 module.exports = router;
