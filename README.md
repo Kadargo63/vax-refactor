@@ -4,7 +4,7 @@
     <br>
 </h1>
 
-# VaxStack: A Simple Appointment Making WebApp for COVID-19 Boosters. 
+# A Simple Appointment Making WebApp for COVID-19 Boosters. 
 
 This web app can be used by patients to signup and login using their credentials to schedule appointments for their COVID-19 Booster. This web app can also be used to edit or delete appointments.
 
@@ -30,36 +30,35 @@ The web app will have:
 - Pharmacy Facing Appointment Viewing
 
 
-## Time Selections/Account Creation
+# Installation
+  Start by cloning repo to local machine.
+  
+  `npm i` to install node package manager dependencies.
+  
+  `npm init` to create json file.
+  
+  `npm i --save mysql2` to connect to MySQL2 database.
+  
+  `npm start` to run the application in terminal or bash
 
-### New Users
-- In order to have full functionality, new users are required to select an available time slot and create an account to schedule their appointment. 
+   Use http://localhost:3001 [or whatever terminal port you have specified] in your browser
 
-### Existing Users
-- Existing users are required to login and can edit or cancel their appointment. 
+# Built with
+- Javascript
+- Node.js
+- Express.js
+- Sequelize
+- JSON
+- dotenv
+- MySQL2
+- InsomniaCore
+- Handlebars.js
+- Heroku
 
-
-## Frontend:
-
-- Reactjs
-  - `npm install`
-  - `npm start`
-- Bootstrap
-
-## Backend:
-
-- Nodejs & Expressjs
-  - `npm install`
-  - `npm start`
-
-## Database:
-
-- MySQL (Workbench)
-- AWS RDS MySQL
-
-## Technologies Used
-- Node.js and Express.js to create a RESTful API.
-- Handle
-
-## Deployed at:
+# Deployed at:
 `https://intense-fortress-36358.herokuapp.com/`
+
+  # Contact Information 
+  * GitHub Username: Kadargo63
+  * Contact Email: Robertisaacs87@yahoo.com
+  
