@@ -56,7 +56,7 @@ The web app will have:
 - Heroku
 
 # Deployed at:
-`https://intense-fortress-36358.herokuapp.com/`
+https://intense-fortress-36358.herokuapp.com/ 
 
   # Contact Information 
   * GitHub Username: Kadargo63
